@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" 
+ "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport name="BillReport" >
+  <parameter name="Title" class="java.lang.String"/>
+  <parameter name="sub_title" class="java.lang.String"/>
+  <parameter name="start_date" class="java.lang.String"/>
+  <parameter name="end_date" class="java.lang.String"/>
+  <queryString><![CDATA[select bill_no,bill_date,amount,disc_amt,cash_amt,card_amt from camry.bill where bill_date between '$P!{start_date}' and '$P!{end_date}']]></queryString>
+  <field name="bill_no" class="java.lang.Integer"/>
+  <field name="bill_date" class="java.lang.String"/>
+  <field name="amount" class="java.lang.Double"/>
+  <field name="disc_amt" class="java.lang.Double"/>
+  <field name="cash_amt" class="java.lang.Double"/>
+  <field name="card_amt" class="java.lang.Double"/>
+  
+  <title>
+    <band height="20">
+      <textField>
+        <reportElement x="0" y="0" width="200" height="20" />       
+        <textFieldExpression class="java.lang.String">$P{Title}</textFieldExpression>
+      </textField>
+    </band>
+  </title>
+  <pageHeader>
+    <band height="20">
+	<textField>
+        <reportElement x="0" y="0" width="500" height="20" />       
+        <textFieldExpression class="java.lang.String">$P{sub_title} </textFieldExpression>
+      </textField>
+    </band>
+  </pageHeader>
+  <columnHeader>
+    <band height="20">
+      <staticText>
+        <reportElement x="0" y="0" width="50" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Billno]]></text>
+      </staticText>
+	  <staticText>
+        <reportElement x="50" y="0" width="80" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Date]]></text>
+      </staticText>
+      <staticText>
+        <reportElement x="130" y="0" width="50" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Total]]></text>
+      </staticText>
+	   <staticText>
+        <reportElement x="180" y="0" width="50" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Discount]]></text>
+      </staticText>
+	   <staticText>
+        <reportElement x="230" y="0" width="50" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Card]]></text>
+      </staticText>
+	   <staticText>
+        <reportElement x="280" y="0" width="50" height="20"/>
+        <textElement>
+          <font isUnderline="true"/>
+        </textElement>
+        <text><![CDATA[Cash]]></text>
+      </staticText>
+    </band>
+  </columnHeader>
+  <detail>
+    <band height="20">
+      <textField>
+        <reportElement x="0" y="0" width="50" height="20"/>                  
+       <textFieldExpression class="java.lang.Integer"><![CDATA[$F{bill_no}]]></textFieldExpression>
+      </textField>
+	  <textField>
+        <reportElement x="50" y="0" width="80" height="20"/>                  
+       <textFieldExpression class="java.lang.Integer"><![CDATA[$F{bill_date}]]></textFieldExpression>
+      </textField>
+      <textField pattern="0.00">
+        <reportElement x="130" y="0" width="50" height="20"/>                  
+        <textFieldExpression class="java.lang.Double"><![CDATA[$F{amount}]]></textFieldExpression>
+      </textField>
+	   <textField pattern="0.00">
+        <reportElement x="180" y="0" width="50" height="20"/>                  
+        <textFieldExpression class="java.lang.Double"><![CDATA[$F{disc_amt}]]></textFieldExpression>
+      </textField>
+	   <textField pattern="0.00">
+        <reportElement x="230" y="0" width="50" height="20"/>                  
+        <textFieldExpression class="java.lang.Double"><![CDATA[$F{cash_amt}]]></textFieldExpression>
+      </textField>
+	   <textField pattern="0.00">
+        <reportElement x="280" y="0" width="50" height="20"/>                  
+        <textFieldExpression class="java.lang.Double"><![CDATA[$F{card_amt}]]></textFieldExpression>
+      </textField>
+    </band>
+  </detail>
+  <columnFooter>
+    <band>
+    </band>
+  </columnFooter>
+  <pageFooter>
+    <band height="15">
+      <staticText>
+        <reportElement x="0" y="0" width="40" height="15"/>
+        <textElement/>
+        <text><![CDATA[Page:]]></text>
+      </staticText>
+      <textField>
+        <reportElement x="40" y="0" width="100" height="15"/>
+        <textElement/>
+        <textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+      </textField>
+    </band>
+  </pageFooter>
+  <summary>
+    <band>
+    </band>
+  </summary>
+</jasperReport>
