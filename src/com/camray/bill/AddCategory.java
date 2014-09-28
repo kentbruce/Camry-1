@@ -22,6 +22,7 @@ public class AddCategory extends JFrame {
     JPanel panel;
     DBConnection db;
     Connection con;
+    //
     
 	
 	public AddCategory(){
